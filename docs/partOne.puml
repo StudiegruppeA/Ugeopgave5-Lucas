@@ -1,0 +1,64 @@
+@startuml partOne
+title Part One - Bygning, rum, lamper og vinduer
+
+skinparam classAttributeIconSize 0
+
+package github.lucasas.partone {
+
+    class BuildingMain {
+        + {static} void main(String[])
+    }
+
+    class Building {
+        - String name
+        - List<Room> rooms
+        + Building(String)
+        + void addRoom(Room)
+        + int getTotalLampCount()
+        + int getTotalWatt()
+        + void printBuilding()
+    }
+
+    class Room {
+        - String name
+        - List<Lamp> lamps
+        - List<Window> windows
+        + Room(String)
+        + void addLamp(Lamp)
+        + void addWindow(Window)
+        + int getLampCount()
+        + int getWindowCount()
+        + int getTotalWatt()
+        + int getTotalWindowArea()
+        + void printRoom()
+        - String lampsToString()
+        - String windowsToString()
+    }
+
+    class Lamp {
+        - int watt
+        - boolean isOn
+        + Lamp(int)
+        + void turnOn()
+        + void turnOff()
+        + int getWatt()
+        + String toString()
+    }
+
+    class Window {
+        - int widthCm
+        - int heightCm
+        + Window(int, int)
+        + int getAreaCm2()
+        + String getSizeString()
+        + String toString()
+    }
+}
+
+BuildingMain ..> Building : opretter
+BuildingMain ..> Room : opretter
+Building --> Room
+Room --> Lamp
+Room --> Window
+
+@enduml

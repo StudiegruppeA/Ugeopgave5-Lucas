@@ -1,0 +1,60 @@
+@startuml partTwo
+title Part Two - Dyr og konkurrence
+
+skinparam classAttributeIconSize 0
+
+package github.lucasas.parttwo {
+
+    class AnimalMain {
+        + {static} void main(String[])
+    }
+
+    class Contest {
+        - Animal animalOne
+        - Animal animalTwo
+        - Animal winner
+        + Contest(Animal, Animal)
+        + void play()
+        + Animal getWinner()
+        - Animal findWinner()
+        - void printWinner()
+        - void fight(Animal, Animal)
+    }
+
+    abstract class Animal {
+        - String name
+        - int energy
+        + Animal(String, int)
+        + boolean isActive()
+        + void removeEnergy(int)
+        + {abstract} int attack()
+        + String getName()
+        + int getEnergy()
+    }
+
+    class Lion {
+        + Lion(String, int)
+        + int attack()
+    }
+
+    class Wolf {
+        + Wolf(String, int)
+        + int attack()
+    }
+
+    class Rabbit {
+        + Rabbit(String, int)
+        + int attack()
+    }
+}
+
+Animal <|-- Lion
+Animal <|-- Wolf
+Animal <|-- Rabbit
+
+AnimalMain ..> Animal : opretter
+AnimalMain ..> Contest : opretter
+Contest --> Animal
+
+
+@enduml
