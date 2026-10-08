@@ -32,9 +32,8 @@ public class Contest {
     private Animal findWinner() {
         if (animalOne.isActive()) {
             return animalOne;
-        } else {
-            return animalTwo;
         }
+        return animalTwo;
     }
 
     private void printWinner() {
